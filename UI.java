@@ -74,6 +74,7 @@ public class UI {
                 case 4:
                     System.out.println("Max Number has yet to be implemented." + '\n'
                             + "Press enter to continue.");
+                    DiceGame.Goalpost = getNumber(1, Integer.MAX_VALUE);
                     SC.nextLine();
                     break;
                 case 5:
@@ -115,9 +116,10 @@ public class UI {
 
     public static boolean hasSame(ArrayList<Integer> I) {
         int S = I.size();
-        for (int i = 0; i != S - 2; i++) {
-            for (int j = 1; j != S - 1; j++) {
+        for (int i = 0; i < S - 1; i++) {
+            for (int j = 1; j < S ; j++) {
                 if (I.get(i) == I.get(j)) {
+                    DiceBot.notHappy();
                     return true;
                 }
             }

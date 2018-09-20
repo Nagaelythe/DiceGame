@@ -42,4 +42,7 @@ public class DiceBot {
         }
 
     }
+    public static void notHappy(){
+        System.out.println("bot says: You lucky !@#$!@#£%&");   
+    }
 }
