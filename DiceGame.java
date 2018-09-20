@@ -109,11 +109,9 @@ public class DiceGame {
         }
         return sum;
     }
-<<<<<<< HEAD
-=======
+
     
     public static void gameIsDone(Player p){
         GAME = ! (p.getBank()>=Goalpost);
     }
->>>>>>> 8c95b9ecef49a6a0ce52934f8573adc5c96bd074
 }
