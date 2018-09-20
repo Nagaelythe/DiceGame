@@ -14,12 +14,16 @@ public class DiceGame {
     static int turnNumber=0;
 
     public static void main(String[] args) {
-
+       // UI.options();
+        
+      //  UI.rules();
+        
+        
         UI.getPlayers();
 
         int players = PLAYERS.size();
 
-        UI.options();
+        
         while (GAME) {
             PLAYERS.get(turnNumber%players).newTurn();
             turn(turnNumber, PLAYERS.get(turnNumber%players));
@@ -30,13 +34,13 @@ public class DiceGame {
 
     public static void printPlayers(ArrayList<Player> players) {
         for (Player n : players) {
-            System.out.print("player " + (players.indexOf(n) + 1) + ": " + n.name + " ");
+            System.out.print("player " + (players.indexOf(n.name) + 1) + ": " + n.name + " ");
         }
     }
 
     public static void turn(int n, Player p) {
         Dice d6 = new Dice(FACES);
-        System.out.println("Player " + (n + 1) + ": " + p.name);
+        System.out.println("Player " + (PLAYERS.indexOf(p.name) + 1) + ": " + p.name);
 
         for (int i = 0; i < RPT; i++) {
             ROLLS.add(d6.roll());
