@@ -77,6 +77,7 @@ public class UI {
                     break;
             }
         }
+        menu();
     }
 
     public static void rules() {
@@ -88,8 +89,10 @@ public class UI {
                 + "If you roll two or more of the same kind, their score will be doubled or tripled and so on." + '\n'
                 + "If a player has more than 100 points that player wins." + '\n'
                 + "If both players have more than 100 it is the player with the most points who wins." + '\n'
-                + "If they have the same amount of points it's a draw");
-
+                + "If they have the same amount of points it's a draw" + '\n'
+                + "Press 'enter' to continue.");
+        SC.nextLine();
+        menu();
     }
 
     public static int valueRoll(ArrayList<Integer> I) {
@@ -115,6 +118,37 @@ public class UI {
             }
         }
         return false;
+    }
 
+    public static void menu() {
+        ArrayList<String> menuOptions = new ArrayList<String>() {
+            {
+                add("      Menu" + '\n');
+                add("1. Start game." + '\n');
+                add("2. Options." + '\n');
+                add("3. Rules." + '\n');
+                add("4. Exit game." + '\n');
+                add("Please enter your choice: ");
+            }
+        };
+
+        for (String n : menuOptions) {
+            System.out.print(n);
+        }
+
+        switch (getNumber(1, 4)) {
+            case 1:
+                break;
+            case 2:
+                options();
+                break;
+            case 3:
+                rules();
+                break;
+            case 4:
+                DiceGame.GAME = false;
+                break;
+
+        }
     }
 }
