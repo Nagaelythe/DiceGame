@@ -15,8 +15,9 @@ public class DiceBot {
     
     
     public static boolean gamble(int currentScore, int inBank, int Streak){
-        if(inBank+currentScore+10>=100)return true;
+        if(inBank+currentScore+10>=DiceGame.Goalpost)return true;
         return currentScore < 21;
+        
     }
     public static void Taunt(){
         Random r = new Random();
@@ -39,5 +40,8 @@ public class DiceBot {
                 System.out.println("I AM THE GREATEST!");
                 break;               
         }
+    }
+    public static void notHappy(){
+        System.out.println("bot says: You lucky !@#$!@#£%&");   
     }
 }

@@ -13,6 +13,7 @@ public class DiceGame {
     static int FACES = 6;
     static boolean bot = false;
     static int turnNumber = 0;
+    static int Goalpost = 100;
 
     public static void main(String[] args) {
         //  UI.rules();
@@ -24,6 +25,7 @@ public class DiceGame {
         while (GAME) {
             PLAYERS.get(turnNumber % players).newTurn();
             turn(turnNumber % players, PLAYERS.get(turnNumber % players));
+            gameIsDone(PLAYERS.get(turnNumber % players));
         }
         printPlayers(PLAYERS);
 
@@ -68,7 +70,7 @@ public class DiceGame {
             System.out.println("");
             return;
         } else {
-            tempBank += sum(ROLLS);
+            tempBank += UI.valueRoll(ROLLS);
             System.out.println("Your roll is worth " + UI.valueRoll(ROLLS) + ".");
             System.out.println("Giving you a total of " + (p.getBank() + tempBank) + " points.");
             System.out.println("Would you like to continue (Y/N): ");
@@ -90,8 +92,10 @@ public class DiceGame {
             } else {
                 p.addToBank(tempBank);
                 turnNumber++;
+                System.out.println(p.name+" stops his turn and is now at "+ p.getBank() +" points.");
                 tempBank = 0;
                 p.updStreak();
+                
             }
         }
         ROLLS.clear();
@@ -105,4 +109,11 @@ public class DiceGame {
         }
         return sum;
     }
+<<<<<<< HEAD
+=======
+    
+    public static void gameIsDone(Player p){
+        GAME = ! (p.getBank()>=Goalpost);
+    }
+>>>>>>> 8c95b9ecef49a6a0ce52934f8573adc5c96bd074
 }
