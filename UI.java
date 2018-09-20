@@ -48,7 +48,7 @@ public class UI {
                     add("2. Number of faces. Currently: " + DiceGame.FACES + '\n');
                     add("3. Difficulty." + '\n');
                     add("4. Goal number." + '\n');
-                    add("5 Exit" + '\n');
+                    add("5. Exit Options" + '\n');
                     add("Enter a number to choose:");
                 }
             };
