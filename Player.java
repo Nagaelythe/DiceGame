@@ -12,6 +12,9 @@ public class Player {
 
     public Player(String name) {
         this.name = name;
+        if (name.length() > 2) {
+            isBot = name.substring(0, 3).toLowerCase().equals("bot");
+        }
     }
 
     public int getBank() {
@@ -34,6 +37,10 @@ public class Player {
         if (currentStreak > Streak) {
             Streak = currentStreak;
         }
+    }
+
+    public int getCStreak() {
+        return currentStreak;
     }
 
 }

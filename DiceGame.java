@@ -57,7 +57,13 @@ public class DiceGame {
             turnNumber++;
             p.updStreak();
             System.out.println("Pres enter to continue to next players turn:");
-            UI.getYN();
+            if(p.isBot){
+                //botting
+                
+            }
+            else{ //no botting
+                UI.getYN();
+            }
             return;
         } else {
             tempBank += sum(ROLLS);
@@ -66,13 +72,27 @@ public class DiceGame {
             System.out.println("Would you like to continue (Y/N)" + '\n');
         }
 
-        if (UI.getYN()) {
-            p.nxtTurn();
-        } else {
-            p.addToBank(tempBank);
-            turnNumber++;
-            tempBank = 0;
-            p.updStreak();
+        if(!p.isBot){  // pllayer  action
+            if (UI.getYN()) {
+                p.nxtTurn();
+            } else {
+                p.addToBank(tempBank);
+                turnNumber++;
+                tempBank = 0;
+                p.updStreak();
+                //DiceBot.Taunt('n');
+            }
+        }
+        else{
+            if( DiceBot.gamble(tempBank,p.getBank(),p.getCStreak()) ){
+                p.nxtTurn();            
+            }
+            else{
+                p.addToBank(tempBank);
+                turnNumber++;
+                tempBank = 0;
+                p.updStreak();
+            }
         }
         ROLLS.clear();
 
