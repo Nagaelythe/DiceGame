@@ -37,9 +37,7 @@ public class DiceBot {
                 break;
             case 4:
                 System.out.println("I AM THE GREATEST!");
-                break;
-                
+                break;               
         }
-
     }
 }

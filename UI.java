@@ -15,7 +15,7 @@ public class UI {
         /* gets the number of players as well as their 
         names and saves them in an ArrayList of Players.*/
         System.out.print("Please enter the number of players: ");
-        int n = getNumber(1,Integer.MAX_VALUE);
+        int n = getNumber(1, Integer.MAX_VALUE);
         for (int i = 1; i <= n; i++) {
             System.out.print("To create a bot, type \"Bot \" + name of the bot." + '\n'
                     + "Please enter the name of Player " + i + ": ");
@@ -33,7 +33,14 @@ public class UI {
     }
 
     public static boolean getYN() {
-        return SC.nextLine().toLowerCase().startsWith("y");
+        if (SC.nextLine().toLowerCase().startsWith("y")) {
+            return true;
+        } else if (SC.nextLine().toLowerCase().startsWith("n")) {
+            return false;
+        }
+
+        System.out.println("Please enter Y/N");
+        return getYN();
     }
 
     public static void options() {
