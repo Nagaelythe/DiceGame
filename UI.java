@@ -175,6 +175,7 @@ public class UI {
                 add(" CONGRATULATIONS" + '\n');
                 add(DiceGame.WINNER.toString());
                 add("Game lasted for " + DiceGame.turnNumber + " turns" + '\n');
+                add("During the game, a total of "+ DiceGame.ONES + " ones were rolled." + '\n');
             }
         };
         for (String s : scoreboard) {
