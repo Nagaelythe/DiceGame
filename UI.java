@@ -33,14 +33,17 @@ public class UI {
     }
 
     public static boolean getYN() {
-        if (SC.nextLine().toLowerCase().startsWith("y")) {
+        String input = SC.nextLine();
+        
+        if (input.toLowerCase().startsWith("y")) {
             return true;
-        } else if (SC.nextLine().toLowerCase().startsWith("n")) {
+        }else if (input.toLowerCase().startsWith("n")) {
             return false;
         }
-        System.out.print("Please enter Y/N:  ");
+        System.out.print("Please enter Y/N: ");
         return getYN();
     }
+    
 
     public static void getEnter() {
         SC.nextLine();
@@ -79,13 +82,11 @@ public class UI {
                 case 3:
                     System.out.println("Difficulty has yet to be implemented." + '\n'
                             + "Press enter to continue.");
-                    SC.nextLine();
+                    getEnter();
                     break;
                 case 4:
-                    System.out.println("Max Number has yet to be implemented." + '\n'
-                            + "Press enter to continue.");
+                    System.out.print("Enter your desired goal mumber: ");
                     DiceGame.Goalpost = getNumber(1, Integer.MAX_VALUE);
-                    SC.nextLine();
                     break;
                 case 5:
                     System.out.println("Exiting options.");
