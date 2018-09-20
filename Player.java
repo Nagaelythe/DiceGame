@@ -14,6 +14,7 @@ public class Player {
         this.name = name;
         if (name.length() > 2) {
             isBot = name.substring(0, 3).toLowerCase().equals("bot");
+            DiceGame.bot = true;
         }
     }
 

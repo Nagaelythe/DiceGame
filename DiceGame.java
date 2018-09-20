@@ -11,7 +11,7 @@ public class DiceGame {
     static ArrayList<Integer> ROLLS = new ArrayList<Integer>(); // stores the rolls during a players turn
     static int RPT = 2; // rolls per turn.
     static int FACES = 6;
-
+    static boolean bot = false;
     static int turnNumber = 0;
 
     public static void main(String[] args) {
@@ -21,7 +21,6 @@ public class DiceGame {
 
         int players = PLAYERS.size();
 
-        UI.options();
         while (GAME) {
             PLAYERS.get(turnNumber % players).newTurn();
             turn(turnNumber % players, PLAYERS.get(turnNumber % players));
@@ -40,7 +39,6 @@ public class DiceGame {
         Dice d6 = new Dice(FACES);
 
         System.out.println("Player " + (n + 1) + ": " + p.name);
-        System.out.println("Player " + (PLAYERS.indexOf(p.name) + 1) + ": " + p.name);
 
         for (int i = 0; i < RPT; i++) {
             ROLLS.add(d6.roll());
@@ -55,23 +53,28 @@ public class DiceGame {
             tempBank = 0;
             turnNumber++;
             p.updStreak();
-            System.out.println("Pres enter to continue to next players turn:");
-            if(p.isBot){
-                //botting
+
+            if (!p.isBot) {
+
+                
+                if (bot) {
+                    DiceBot.Taunt();
+                }
+                System.out.println("Pres enter to continue to next players turn:");
+                
+                UI.getYN();
                 
             }
-            else{ //no botting
-                UI.getYN();
-            }
+            System.out.println("");
             return;
         } else {
             tempBank += sum(ROLLS);
             System.out.println("Your roll is worth " + UI.valueRoll(ROLLS) + ".");
             System.out.println("Giving you a total of " + (p.getBank() + tempBank) + " points.");
-            System.out.print("Would you like to continue (Y/N): ");
+            System.out.println("Would you like to continue (Y/N): ");
         }
 
-        if(!p.isBot){  // pllayer  action
+        if (!p.isBot) {  // pllayer  action
             if (UI.getYN()) {
                 p.nxtTurn();
             } else {
@@ -79,14 +82,12 @@ public class DiceGame {
                 turnNumber++;
                 tempBank = 0;
                 p.updStreak();
-                //DiceBot.Taunt('n');
+
             }
-        }
-        else{
-            if( DiceBot.gamble(tempBank,p.getBank(),p.getCStreak()) ){
-                p.nxtTurn();            
-            }
-            else{
+        } else {
+            if (DiceBot.gamble(tempBank, p.getBank(), p.getCStreak())) {
+                p.nxtTurn();
+            } else {
                 p.addToBank(tempBank);
                 turnNumber++;
                 tempBank = 0;
@@ -94,7 +95,7 @@ public class DiceGame {
             }
         }
         ROLLS.clear();
-
+        System.out.println("");
     }
 
     public static int sum(ArrayList<Integer> list) {
