@@ -14,13 +14,18 @@ public class DiceGame {
     static int turnNumber=0;
 
     public static void main(String[] args) {
+
         UI.getPlayers();
+
         int players = PLAYERS.size();
+
+        UI.options();
         while (GAME) {
             PLAYERS.get(turnNumber%players).newTurn();
             turn(turnNumber, PLAYERS.get(turnNumber%players));
         }
         printPlayers(PLAYERS);
+
     }
 
     public static void printPlayers(ArrayList<Player> players) {
@@ -60,10 +65,6 @@ public class DiceGame {
         ROLLS.clear();
         
     }
-
-    public static void options() {
-        // for changing dice size, number of rolls per turn etc.
-    }
     
     public static int sum(ArrayList<Integer> list){
         int sum= 0;
@@ -72,4 +73,5 @@ public class DiceGame {
         }
         return sum;
     }
+
 }

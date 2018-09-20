@@ -16,6 +16,7 @@ public class Player {
     public void addToBank(ArrayList<Integer> roll) {
         Bank += DiceGame.sum(roll);
     }
+
     public void newTurn(){
         this.currentStreak =0;
     }
@@ -26,4 +27,5 @@ public class Player {
         if(i > Streak) Streak = i;
     }
     
+
 }
