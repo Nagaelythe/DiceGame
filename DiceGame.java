@@ -11,12 +11,8 @@ public class DiceGame {
     static ArrayList<Integer> ROLLS = new ArrayList<Integer>(); // stores the rolls during a players turn
     static int RPT = 2; // rolls per turn.
     static int FACES = 6;
-<<<<<<< HEAD
-    static int turnNumber=0;
-    static int players;
-=======
+
     static int turnNumber = 0;
->>>>>>> 1e8570a5a92e7cc6ffc0f27c01f9c31e43dd1c80
 
     public static void main(String[] args) {
         // UI.options();
@@ -28,18 +24,11 @@ public class DiceGame {
 
         UI.options();
         while (GAME) {
-<<<<<<< HEAD
-            PLAYERS.get(turnNumber%players).newTurn();
-            turn(turnNumber%players, PLAYERS.get(turnNumber%players));
-            
-=======
             PLAYERS.get(turnNumber % players).newTurn();
-            turn(turnNumber, PLAYERS.get(turnNumber % players));
-
->>>>>>> 1e8570a5a92e7cc6ffc0f27c01f9c31e43dd1c80
+            turn(turnNumber % players, PLAYERS.get(turnNumber % players));
         }
         printPlayers(PLAYERS);
-        
+
     }
 
     public static void printPlayers(ArrayList<Player> players) {
@@ -50,19 +39,16 @@ public class DiceGame {
 
     public static void turn(int n, Player p) {
         Dice d6 = new Dice(FACES);
-<<<<<<< HEAD
-        System.out.println("Player " + (n+1) + ": " + p.name);
-=======
-        System.out.println("Player " + (PLAYERS.indexOf(p.name) + 1) + ": " + p.name);
->>>>>>> 1e8570a5a92e7cc6ffc0f27c01f9c31e43dd1c80
 
-        
+        System.out.println("Player " + (n + 1) + ": " + p.name);
+        System.out.println("Player " + (PLAYERS.indexOf(p.name) + 1) + ": " + p.name);
+
         for (int i = 0; i < RPT; i++) {
             ROLLS.add(d6.roll());
         }
         System.out.println("You rolled:");
         for (int i = 0; i < ROLLS.size(); i++) {
-            System.out.println("d" + (i+1) + ": " + ROLLS.get(i));
+            System.out.println("d" + (i + 1) + ": " + ROLLS.get(i));
         }
         if (ROLLS.contains(1) && sum(ROLLS) != 2) {
             System.out.println("You rolled a SINGLE 1, you lost " + tempBank + " points");
@@ -89,10 +75,7 @@ public class DiceGame {
             p.updStreak();
         }
         ROLLS.clear();
-<<<<<<< HEAD
-    
-=======
->>>>>>> 1e8570a5a92e7cc6ffc0f27c01f9c31e43dd1c80
+
     }
 
     public static int sum(ArrayList<Integer> list) {
