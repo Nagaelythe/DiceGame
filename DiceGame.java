@@ -21,7 +21,6 @@ public class DiceGame {
 
         int players = PLAYERS.size();
 
-        UI.options();
         while (GAME) {
             PLAYERS.get(turnNumber % players).newTurn();
             turn(turnNumber % players, PLAYERS.get(turnNumber % players));
