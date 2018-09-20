@@ -26,8 +26,8 @@ public class UI {
     public static int getNumber(int min, int max) {
         int num = 0;
         try {
-        num = Integer.parseInt(SC.nextLine());
-        } catch(NumberFormatException e) {
+            num = Integer.parseInt(SC.nextLine());
+        } catch (NumberFormatException e) {
             System.out.println("Not a number!");
         }
         if (num < min || num > max) {
@@ -39,20 +39,20 @@ public class UI {
 
     public static boolean getYN() {
         String input = SC.nextLine();
-        
+
         if (input.toLowerCase().startsWith("y")) {
             return true;
-        }else if (input.toLowerCase().startsWith("n")) {
+        } else if (input.toLowerCase().startsWith("n")) {
             return false;
         }
         System.out.print("Please enter Y/N: ");
         return getYN();
-    }    
+    }
 
     public static void getEnter() {
         SC.nextLine();
     }
-    
+
     public static void options() {
         // for changing dice size, number of rolls per turn etc.
         boolean showOptions = true;
@@ -63,42 +63,37 @@ public class UI {
                     add("What would you like to change? " + '\n');
                     add("1. Number of rolls per turn. Currently: " + DiceGame.RPT + '\n');
                     add("2. Number of faces. Currently: " + DiceGame.FACES + '\n');
-                    add("3. Difficulty." + '\n');
-                    add("4. Goal number." + '\n');
-                    add("5. Exit Options" + '\n');
+                    add("3. Goal number." + '\n');
+                    add("4. Exit Options" + '\n');
                     add("Enter a number to choose:");
                 }
             };
             for (String n : options) {
                 System.out.print(n);
             }
-            switch (getNumber(1, 5)) {
+            switch (getNumber(1, 4)) {
                 case 1:
                     System.out.print("How many rolls per turn would you like?" + '\n'
                             + "enter a number: ");
                     DiceGame.RPT = getNumber(1, Integer.MAX_VALUE);
                     break;
                 case 2:
-                    System.out.println("How many faces would you like the dice to have?" + '\n'
+                    System.out.print("How many faces would you like the dice to have?" + '\n'
                             + "Dice is currently " + DiceGame.FACES + "-sided.");
                     DiceGame.FACES = getNumber(1, Integer.MAX_VALUE);
                     break;
                 case 3:
-                    System.out.println("Difficulty has yet to be implemented." + '\n'
-                            + "Press enter to continue.");
-                    getEnter();
-                    break;
-                case 4:
-                    System.out.print("Enter your desired goal mumber: ");
+                    System.out.print("Current goal is " + DiceGame.Goalpost +
+                            '\n'+ "Enter your desired goal mumber:");
                     DiceGame.Goalpost = getNumber(1, Integer.MAX_VALUE);
                     break;
-                case 5:
+                case 4:
                     System.out.println("Exiting options.");
                     showOptions = false;
-                    break;
             }
         }
         menu();
+
     }
 
     public static void rules() {
@@ -108,9 +103,8 @@ public class UI {
                 + "You may continue rolling the dice and add to the total until you either save it in the ‘bank’ or roll a 1." + '\n'
                 + "If you roll a 1 you lose your points for the turn." + '\n'
                 + "If you roll two or more of the same kind, their score will be doubled or tripled and so on." + '\n'
-                + "If a player has more than 100 points that player wins." + '\n'
-                + "If both players have more than 100 it is the player with the most points who wins." + '\n'
-                + "If they have the same amount of points it's a draw" + '\n'
+                + "If a player has more than " + DiceGame.Goalpost + " points that player wins." + '\n'
+                + "If both players have more than " + DiceGame.Goalpost + " it is the player with the most points who wins." + '\n'
                 + "Press 'enter' to continue.");
         SC.nextLine();
         menu();
@@ -120,8 +114,8 @@ public class UI {
         if (hasSame(I)) {
             switch (DiceGame.sum(I)) {
                 case 2:
-                    DiceGame.ONES +=2;
-                    return 10;  
+                    DiceGame.ONES += 2;
+                    return 10;
                 default:
                     return DiceGame.sum(I) * 2;
             }
@@ -133,7 +127,7 @@ public class UI {
     public static boolean hasSame(ArrayList<Integer> I) {
         int S = I.size();
         for (int i = 0; i < S - 1; i++) {
-            for (int j = 1; j < S ; j++) {
+            for (int j = 1; j < S; j++) {
                 if (I.get(i) == I.get(j)) {
                     DiceBot.notHappy();
                     return true;
@@ -170,23 +164,23 @@ public class UI {
                 break;
             case 4:
                 DiceGame.GAME = false;
-                break;
+                return;
+        }
+    }
 
-        }
-    }
-    
-    public static void scoreScreen(){
-              
-        ArrayList<String> scoreboard = new ArrayList<String>(){
+    public static void scoreScreen() {
+
+        ArrayList<String> scoreboard = new ArrayList<String>() {
             {
-            add(" CONGRATULATIONS" +'\n');
-            add(DiceGame.WINNER.toString());
-        }
+                add(" CONGRATULATIONS" + '\n');
+                add(DiceGame.WINNER.toString());
+                add("Game lasted for " + DiceGame.turnNumber + " turns" + '\n');
+            }
         };
-    for(String s : scoreboard){
-        System.out.print(s);
+        for (String s : scoreboard) {
+            System.out.print(s);
+        }
+
     }
-    
-    }
-    
+
 }
