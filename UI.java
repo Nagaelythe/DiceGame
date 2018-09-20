@@ -42,8 +42,7 @@ public class UI {
         }
         System.out.print("Please enter Y/N: ");
         return getYN();
-    }
-    
+    }    
 
     public static void getEnter() {
         SC.nextLine();
@@ -169,4 +168,22 @@ public class UI {
 
         }
     }
+    
+    public void scoreScreen(ArrayList<Player> p){
+        ArrayList<Player> n;
+        n = p;
+        
+              
+        ArrayList<String> scoreboard = new ArrayList<String>(){
+            {
+            add("      Scoreboard" + '\n');
+            add("1. ");
+        }
+        };
+    for(String s : scoreboard){
+        System.out.print(s);
+    }
+    
+    }
+    
 }
