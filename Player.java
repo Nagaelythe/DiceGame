@@ -11,10 +11,12 @@ public class Player {
     public Player(String name) {
         this.name = name;
     }
+    public int getBank(){
+        return Bank;
+    }
 
-
-    public void addToBank(ArrayList<Integer> roll) {
-        Bank += DiceGame.sum(roll);
+    public void addToBank(int i) {
+        Bank += i;
     }
 
     public void newTurn(){
@@ -23,8 +25,8 @@ public class Player {
     public void nxtTurn(){
         currentStreak++;
     }
-    public void updStreak(int i){
-        if(i > Streak) Streak = i;
+    public void updStreak(){
+        if(currentStreak > Streak) Streak = currentStreak;
     }
     
 

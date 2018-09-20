@@ -78,17 +78,43 @@ public class UI {
             }
         }
     }
+   
+    public static void rules(){
+        System.out.print(
+                "                                           RULES"+'\n'
+                +"In this dice game the players take turn rolling " +DiceGame.RPT + " dice and saving the total."+'\n'
+                +"You may continue rolling the dice and add to the total until you either save it in the ‘bank’ or roll a 1."+'\n'
+                +"If you roll a 1 you lose your points for the turn."+'\n'
+                +"If you roll two or more of the same kind, their score will be doubled or tripled and so on."+'\n'
+                +"If a player has more than 100 points that player wins."+'\n'
+                +"If both players have more than 100 it is the player with the most points who wins."+'\n'
+                +"If they have the same amount of points it's a draw");
+        
+    }
 
-    public static void rules() {
-        System.out.println(
-                "                                           RULES" + '\n'
-                + "In this dice game the players take turn rolling " + DiceGame.RPT + " dice and saving the total." + '\n'
-                + "You may continue rolling the dice and add to the total until you either save it in the ‘bank’ or roll a 1." + '\n'
-                + "If you roll a 1 you lose your points for the turn." + '\n'
-                + "If you roll two or more of the same kind, their score will be doubled or tripled and so on." + '\n'
-                + "If a player has more than 100 points that player wins." + '\n'
-                + "If both players have more than 100 it is the player with the most points who wins." + '\n'
-                + "If they have the same amount of points it's a draw");
+ 
+    public static int valueRoll(ArrayList<Integer> I){
+        if(hasSame(I)){
+            switch (DiceGame.sum(I)){
+                case 2:
+                    return 10;
+                default :
+                    return DiceGame.sum(I)*2;
+            }
+        }
+        else{
+            return DiceGame.sum(I);
+        }
+    }
+    
+    public static boolean hasSame(ArrayList<Integer> I){
+        int S = I.size();
+        for(int i = 0; i != S-2; i++){
+            for(int j=1; j!=S-1;j++){
+                if(I.get(i)==I.get(j)) return true;
+            }
+        }
+        return false;
 
     }
 }

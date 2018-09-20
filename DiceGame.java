@@ -6,7 +6,7 @@ public class DiceGame {
 
     static int ONES; // number of ones rolled.
     static ArrayList<Player> PLAYERS = new ArrayList<Player>();
-    private static ArrayList<Integer> tempBank = new ArrayList<Integer>();
+    private static int tempBank = 0;
     static boolean GAME = true; // gamestate
     static ArrayList<Integer> ROLLS = new ArrayList<Integer>(); // stores the rolls during a players turn
     static int RPT = 2; // rolls per turn.
@@ -23,10 +23,12 @@ public class DiceGame {
 
         int players = PLAYERS.size();
 
-        
+        //UI.options();
+
         while (GAME) {
             PLAYERS.get(turnNumber%players).newTurn();
             turn(turnNumber, PLAYERS.get(turnNumber%players));
+            
         }
         printPlayers(PLAYERS);
 
@@ -50,22 +52,29 @@ public class DiceGame {
             System.out.println("d" + (ROLLS.indexOf(r) + 1) + ": " + r);
         }
         if (ROLLS.contains(1)&& sum(ROLLS) != 2) {
-            System.out.println("You rolled a SINGLE 1, bank cleared.");
+            System.out.println("You rolled a SINGLE 1, you lost " +tempBank + " points");
             ROLLS.clear();
+            tempBank=0;
             turnNumber++;
-
-        } else {
-            System.out.println("Would you like to keep any? (Y/N)" + '\n');
+            p.updStreak();
+            System.out.println("Pres enter to continue to next players turn:");
+            UI.getYN();
+            return;
+        }else {
+            tempBank+=sum(ROLLS);
+            System.out.println("Your roll is worth " + UI.valueRoll(ROLLS) + ".");
+            System.out.println("Giving you a total of "+ (p.getBank()+tempBank) + " points.");
+            System.out.println("Would you like to continue (Y/N)" + '\n');
         }
         if (UI.getYN()) {
-            System.out.print("Which die would you like to keep?" + '\n'
-                    + "Enter a number: ");
-            tempBank.add(ROLLS.get(UI.getNumber(1, ROLLS.size()) - 1));
             p.nxtTurn();
         }else{
+            p.addToBank(tempBank);
             turnNumber++;
+            tempBank=0;
+            p.updStreak();
         }
-        p.addToBank(ROLLS);
+        
         ROLLS.clear();
         
     }
