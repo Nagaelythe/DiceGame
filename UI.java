@@ -38,11 +38,14 @@ public class UI {
         } else if (SC.nextLine().toLowerCase().startsWith("n")) {
             return false;
         }
-
-        System.out.println("Please enter Y/N");
+        System.out.print("Please enter Y/N:  ");
         return getYN();
     }
 
+    public static void getEnter() {
+        SC.nextLine();
+    }
+    
     public static void options() {
         // for changing dice size, number of rolls per turn etc.
         boolean showOptions = true;

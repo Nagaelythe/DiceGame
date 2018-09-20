@@ -57,15 +57,12 @@ public class DiceGame {
             p.updStreak();
 
             if (!p.isBot) {
-
                 
                 if (bot) {
                     DiceBot.Taunt();
                 }
                 System.out.println("Pres enter to continue to next players turn:");
-                
-                UI.getYN();
-                
+                UI.getEnter();
             }
             System.out.println("");
             return;
@@ -84,7 +81,6 @@ public class DiceGame {
                 turnNumber++;
                 tempBank = 0;
                 p.updStreak();
-
             }
         } else {
             if (DiceBot.gamble(tempBank, p.getBank(), p.getCStreak())) {
