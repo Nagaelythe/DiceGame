@@ -8,6 +8,7 @@ public class Player {
     private int currentStreak = 0;
     private int Bank = 0;
     protected String name;
+    public boolean isBot;
 
     public Player(String name) {
         this.name = name;
