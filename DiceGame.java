@@ -11,24 +11,21 @@ public class DiceGame {
     static ArrayList<Integer> ROLLS = new ArrayList<Integer>(); // stores the rolls during a players turn
     static int RPT = 2; // rolls per turn.
     static int FACES = 6;
-    static int turnNumber=0;
+    static int turnNumber = 0;
 
     public static void main(String[] args) {
-       // UI.options();
-        
-      //  UI.rules();
-        
-        
+        // UI.options();
+
+        //  UI.rules();
         UI.getPlayers();
 
         int players = PLAYERS.size();
 
         //UI.options();
-
         while (GAME) {
-            PLAYERS.get(turnNumber%players).newTurn();
-            turn(turnNumber, PLAYERS.get(turnNumber%players));
-            
+            PLAYERS.get(turnNumber % players).newTurn();
+            turn(turnNumber, PLAYERS.get(turnNumber % players));
+
         }
         printPlayers(PLAYERS);
 
@@ -48,41 +45,39 @@ public class DiceGame {
             ROLLS.add(d6.roll());
         }
         System.out.println("You rolled:");
-        for (int r : ROLLS) {
-            System.out.println("d" + (ROLLS.indexOf(r) + 1) + ": " + r);
+        for (int i = 0; i < ROLLS.size(); i++) {
+            System.out.println("d" + (i+1) + ": " + ROLLS.get(i));
         }
-        if (ROLLS.contains(1)&& sum(ROLLS) != 2) {
-            System.out.println("You rolled a SINGLE 1, you lost " +tempBank + " points");
+        if (ROLLS.contains(1) && sum(ROLLS) != 2) {
+            System.out.println("You rolled a SINGLE 1, you lost " + tempBank + " points");
             ROLLS.clear();
-            tempBank=0;
+            tempBank = 0;
             turnNumber++;
             p.updStreak();
             System.out.println("Pres enter to continue to next players turn:");
             UI.getYN();
             return;
-        }else {
-            tempBank+=sum(ROLLS);
+        } else {
+            tempBank += sum(ROLLS);
             System.out.println("Your roll is worth " + UI.valueRoll(ROLLS) + ".");
-            System.out.println("Giving you a total of "+ (p.getBank()+tempBank) + " points.");
+            System.out.println("Giving you a total of " + (p.getBank() + tempBank) + " points.");
             System.out.println("Would you like to continue (Y/N)" + '\n');
         }
         if (UI.getYN()) {
             p.nxtTurn();
-        }else{
+        } else {
             p.addToBank(tempBank);
             turnNumber++;
-            tempBank=0;
+            tempBank = 0;
             p.updStreak();
         }
-        
         ROLLS.clear();
-        
     }
-    
-    public static int sum(ArrayList<Integer> list){
-        int sum= 0;
-        for(int i : list){
-            sum+=i;
+
+    public static int sum(ArrayList<Integer> list) {
+        int sum = 0;
+        for (int i : list) {
+            sum += i;
         }
         return sum;
     }
