@@ -1,10 +1,11 @@
 package dicegame;
 
 import java.util.ArrayList;
+import java.util.Collection;
 
 public class DiceGame {
 
-    static int ONES; // number of ones rolled.
+    static int ONES =0; // number of ones rolled.
     static ArrayList<Player> PLAYERS = new ArrayList<Player>();
     private static int tempBank = 0;
     static boolean GAME = true; // gamestate
@@ -24,13 +25,14 @@ public class DiceGame {
         int players = PLAYERS.size();
 
         while (GAME) {
-            PLAYERS.get(turnNumber % players).newTurn();
             turn(turnNumber % players, PLAYERS.get(turnNumber % players));
             gameIsDone(PLAYERS.get(turnNumber % players));
         }
         printPlayers(PLAYERS);
-        if(WINNER.isBot) DiceBot.Dance();
+        //if(WINNER.isBot) DiceBot.Dance();
+        
 
+        
     }
 
     public static void printPlayers(ArrayList<Player> players) {
@@ -55,6 +57,7 @@ public class DiceGame {
             System.out.println("You rolled a SINGLE 1, you lost " + tempBank + " points");
             ROLLS.clear();
             tempBank = 0;
+            ONES++;
             turnNumber++;
             p.updStreak();
 
@@ -83,6 +86,7 @@ public class DiceGame {
                 turnNumber++;
                 tempBank = 0;
                 p.updStreak();
+                p.newTurn();
             }
         } else {
             if (DiceBot.gamble(tempBank, p.getBank(), p.getCStreak())) {
@@ -93,6 +97,7 @@ public class DiceGame {
                 System.out.println(p.name+" stops his turn and is now at "+ p.getBank() +" points.");
                 tempBank = 0;
                 p.updStreak();
+                p.newTurn();
                 
             }
         }

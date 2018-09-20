@@ -116,7 +116,8 @@ public class UI {
         if (hasSame(I)) {
             switch (DiceGame.sum(I)) {
                 case 2:
-                    return 10;
+                    DiceGame.ONES +=2;
+                    return 10;  
                 default:
                     return DiceGame.sum(I) * 2;
             }
