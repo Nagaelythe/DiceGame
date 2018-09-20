@@ -15,7 +15,7 @@ public class UI {
         /* gets the number of players as well as their 
         names and saves them in an ArrayList of Players.*/
         System.out.print("Please enter the number of players: ");
-        int n = getNumber(1,Integer.MAX_VALUE);
+        int n = getNumber(1, Integer.MAX_VALUE);
         for (int i = 1; i <= n; i++) {
             System.out.print("To create a bot, type \"Bot \" + name of the bot." + '\n'
                     + "Please enter the name of Player " + i + ": ");
@@ -33,9 +33,22 @@ public class UI {
     }
 
     public static boolean getYN() {
-        return SC.nextLine().toLowerCase().startsWith("y");
+        String input = SC.nextLine();
+        
+        if (input.toLowerCase().startsWith("y")) {
+            return true;
+        }else if (input.toLowerCase().startsWith("n")) {
+            return false;
+        }
+        System.out.print("Please enter Y/N: ");
+        return getYN();
     }
+    
 
+    public static void getEnter() {
+        SC.nextLine();
+    }
+    
     public static void options() {
         // for changing dice size, number of rolls per turn etc.
         boolean showOptions = true;
@@ -69,13 +82,11 @@ public class UI {
                 case 3:
                     System.out.println("Difficulty has yet to be implemented." + '\n'
                             + "Press enter to continue.");
-                    SC.nextLine();
+                    getEnter();
                     break;
                 case 4:
-                    System.out.println("Max Number has yet to be implemented." + '\n'
-                            + "Press enter to continue.");
+                    System.out.print("Enter your desired goal mumber: ");
                     DiceGame.Goalpost = getNumber(1, Integer.MAX_VALUE);
-                    SC.nextLine();
                     break;
                 case 5:
                     System.out.println("Exiting options.");
