@@ -11,19 +11,14 @@ public class DiceGame {
     static ArrayList<Integer> ROLLS = new ArrayList<Integer>(); // stores the rolls during a players turn
     static int RPT = 2; // rolls per turn.
     static int FACES = 6;
+    static int turnNumber=0;
 
     public static void main(String[] args) {
         UI.getPlayers();
-        int turnNumber = 0;
-
+        int players = PLAYERS.size();
         while (GAME) {
-            turn(turnNumber, PLAYERS.get(turnNumber));
-
-            if (turnNumber < PLAYERS.size()) {
-                turnNumber++;
-            } else {
-                turnNumber = 0;
-            }
+            PLAYERS.get(turnNumber%players).newTurn();
+            turn(turnNumber, PLAYERS.get(turnNumber%players));
         }
         printPlayers(PLAYERS);
     }
@@ -45,9 +40,10 @@ public class DiceGame {
         for (int r : ROLLS) {
             System.out.println("d" + (ROLLS.indexOf(r) + 1) + ": " + r);
         }
-        if (ROLLS.contains(1)) {
-            System.out.println("You rolled a 1, bank cleared.");
+        if (ROLLS.contains(1)&& sum(ROLLS) != 2) {
+            System.out.println("You rolled a SINGLE 1, bank cleared.");
             ROLLS.clear();
+            turnNumber++;
 
         } else {
             System.out.println("Would you like to keep any? (Y/N)" + '\n');
@@ -56,12 +52,24 @@ public class DiceGame {
             System.out.print("Which die would you like to keep?" + '\n'
                     + "Enter a number: ");
             tempBank.add(ROLLS.get(UI.getNumber(1, ROLLS.size()) - 1));
+            p.nxtTurn();
+        }else{
+            turnNumber++;
         }
         p.addToBank(ROLLS);
         ROLLS.clear();
+        
     }
 
     public static void options() {
         // for changing dice size, number of rolls per turn etc.
+    }
+    
+    public static int sum(ArrayList<Integer> list){
+        int sum= 0;
+        for(int i : list){
+            sum+=i;
+        }
+        return sum;
     }
 }

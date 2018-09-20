@@ -13,7 +13,7 @@ public class UI {
 
     public static void getPlayers() {
         /* gets the number of players as well as their 
-names and saves them in an ArrayList of Players.*/
+        names and saves them in an ArrayList of Players.*/
         System.out.print("Please enter the number of players: ");
         int n = Integer.parseInt(SC.nextLine());
         for (int i = 1; i <= n; i++) {

@@ -3,24 +3,27 @@ package dicegame;
 import java.util.ArrayList;
 
 public class Player {
-
-    private ArrayList<Integer> bank = new ArrayList<>();
+    private int Streak = 0;
+    private int currentStreak =0;
+    private int Bank = 0;
     protected String name;
 
     public Player(String name) {
         this.name = name;
     }
 
-    public int bankSum() {
-        int sum = 0;
-        for (int i = 0; i < bank.size(); i++) {
-            sum += bank.get(i);
-        }
-        return sum;
-    }
 
     public void addToBank(ArrayList<Integer> roll) {
-        bank.addAll(roll);
+        Bank += DiceGame.sum(roll);
     }
-
+    public void newTurn(){
+        this.currentStreak =0;
+    }
+    public void nxtTurn(){
+        currentStreak++;
+    }
+    public void updStreak(int i){
+        if(i > Streak) Streak = i;
+    }
+    
 }
