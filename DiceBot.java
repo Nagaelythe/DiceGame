@@ -12,17 +12,24 @@ import java.util.Random;
  * @author Martin Wulff
  */
 public class DiceBot {
-    
-    
-    public static boolean gamble(int currentScore, int inBank, int Streak){
-        if(inBank+currentScore+10>=DiceGame.Goalpost)return true;
+
+    private static int kickassmove = 0;
+
+    public static boolean gamble(int currentScore, int inBank, int Streak) {
+        if (currentScore >= DiceGame.Goalpost) {
+            return false;
+        }
+        if (inBank + currentScore + 10 >= DiceGame.Goalpost) {
+            return true;
+        }
         return currentScore < 21;
-        
+
     }
-    public static void Taunt(){
+
+    public static void Taunt() {
         Random r = new Random();
         System.out.print("Bot says: ");
-        switch(r.nextInt(5)){
+        switch (r.nextInt(5)) {
             case 0:
                 System.out.println("Loooooo---hoo");
                 System.out.println("Seee-heeer!");
@@ -39,11 +46,48 @@ public class DiceBot {
             case 4:
                 System.out.println("I AM THE GREATEST!");
                 break;
-                
+
         }
 
     }
-    public static void notHappy(){
-        System.out.println("bot says: You lucky !@#$!@#£%&");   
+
+    public static void notHappy() {
+        System.out.println("bot says: You lucky !@#$!@#£%&");
+    }
+
+    public static void Dance() {
+        for (int i =0 ; i<10; i ++){
+            /*
+        for (int i = 0; i < 13; i++) {
+            System.out.println("");
+            
+        }
+             */
+            
+            System.out.println("Go DICE BOT! go DICE BOT!");
+            switch (kickassmove) {
+
+                case 0:
+                    System.out.println("¯\\_[ツ]_/¯");
+                    kickassmove = (kickassmove + 1) % 4;
+
+                case 1:
+                    System.out.println("_/-(ツ)-/¯");
+                    kickassmove = (kickassmove + 1) % 4;
+
+
+                case 2:
+                    System.out.println("¯\\_(ツ)-\\_");
+                    kickassmove = (kickassmove + 1) % 4;
+
+
+                case 3:
+                    System.out.println("_/-(ツ)-\\_");
+                    kickassmove = (kickassmove + 1) % 4;
+
+
+            }
+        }
+
     }
 }

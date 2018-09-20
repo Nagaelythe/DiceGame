@@ -13,7 +13,8 @@ public class DiceGame {
     static int FACES = 6;
     static boolean bot = false;
     static int turnNumber = 0;
-    static int Goalpost = 100;
+    public static int Goalpost = 100;
+    static Player WINNER;
 
     public static void main(String[] args) {
         //  UI.rules();
@@ -28,6 +29,7 @@ public class DiceGame {
             gameIsDone(PLAYERS.get(turnNumber % players));
         }
         printPlayers(PLAYERS);
+        if(WINNER.isBot) DiceBot.Dance();
 
     }
 
@@ -111,6 +113,7 @@ public class DiceGame {
     }
     
     public static void gameIsDone(Player p){
-        GAME = ! (p.getBank()>=Goalpost);
+        GAME = !(p.getBank()>=Goalpost);
+        WINNER = p;
     }
 }
