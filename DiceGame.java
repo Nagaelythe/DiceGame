@@ -25,6 +25,7 @@ public class DiceGame {
         while (GAME) {
             PLAYERS.get(turnNumber % players).newTurn();
             turn(turnNumber % players, PLAYERS.get(turnNumber % players));
+            gameIsDone(PLAYERS.get(turnNumber % players));
         }
         printPlayers(PLAYERS);
 

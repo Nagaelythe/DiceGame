@@ -15,8 +15,9 @@ public class DiceBot {
     
     
     public static boolean gamble(int currentScore, int inBank, int Streak){
-        if(inBank+currentScore+10>=100)return true;
+        if(inBank+currentScore+10>=DiceGame.Goalpost)return true;
         return currentScore < 21;
+        
     }
     public static void Taunt(){
         Random r = new Random();
