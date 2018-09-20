@@ -41,8 +41,8 @@ public class UI {
         while (showOptions) {
             ArrayList<String> options = new ArrayList<String>() {
                 {
-                    add("      OPTIONS+'\n'");
-                    add("What would you like to change?" + '\n');
+                    add("      OPTIONS" + '\n');
+                    add("What would you like to change? " + '\n');
                     add("1. Number of rolls per turn. Currently: " + DiceGame.RPT + '\n');
                     add("2. Number of faces. Currently: " + DiceGame.FACES + '\n');
                     add("3. Difficulty." + '\n');
@@ -66,10 +66,14 @@ public class UI {
                     DiceGame.FACES = getNumber(1, Integer.MAX_VALUE);
                     break;
                 case 3:
-                    System.out.println("Difficulty has yet to be implemented.");
+                    System.out.println("Difficulty has yet to be implemented." + '\n'
+                            + "Press enter to continue.");
+                    SC.nextLine();
                     break;
                 case 4:
-                    System.out.println("Max Number has yet to be implemented.");
+                    System.out.println("Max Number has yet to be implemented." + '\n'
+                            + "Press enter to continue.");
+                    SC.nextLine();
                     break;
                 case 5:
                     System.out.println("Exiting options.");
