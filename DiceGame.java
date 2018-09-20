@@ -14,9 +14,8 @@ public class DiceGame {
     static int turnNumber = 0;
 
     public static void main(String[] args) {
-        // UI.options();
-
         //  UI.rules();
+        UI.menu();
         UI.getPlayers();
 
         int players = PLAYERS.size();
@@ -61,7 +60,7 @@ public class DiceGame {
             tempBank += sum(ROLLS);
             System.out.println("Your roll is worth " + UI.valueRoll(ROLLS) + ".");
             System.out.println("Giving you a total of " + (p.getBank() + tempBank) + " points.");
-            System.out.println("Would you like to continue (Y/N)" + '\n');
+            System.out.print("Would you like to continue (Y/N): ");
         }
         if (UI.getYN()) {
             p.nxtTurn();
