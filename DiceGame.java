@@ -12,6 +12,7 @@ public class DiceGame {
     static int RPT = 2; // rolls per turn.
     static int FACES = 6;
     static int turnNumber=0;
+    static int players;
 
     public static void main(String[] args) {
 
@@ -19,14 +20,14 @@ public class DiceGame {
 
         int players = PLAYERS.size();
 
-        //UI.options();
+        UI.options();
         while (GAME) {
             PLAYERS.get(turnNumber%players).newTurn();
-            turn(turnNumber, PLAYERS.get(turnNumber%players));
+            turn(turnNumber%players, PLAYERS.get(turnNumber%players));
             
         }
         printPlayers(PLAYERS);
-
+        
     }
 
     public static void printPlayers(ArrayList<Player> players) {
@@ -37,8 +38,9 @@ public class DiceGame {
 
     public static void turn(int n, Player p) {
         Dice d6 = new Dice(FACES);
-        System.out.println("Player " + (n + 1) + ": " + p.name);
+        System.out.println("Player " + (n+1) + ": " + p.name);
 
+        
         for (int i = 0; i < RPT; i++) {
             ROLLS.add(d6.roll());
         }
@@ -61,6 +63,7 @@ public class DiceGame {
             System.out.println("Giving you a total of "+ (p.getBank()+tempBank) + " points.");
             System.out.println("Would you like to continue (Y/N)" + '\n');
         }
+
         if (UI.getYN()) {
             p.nxtTurn();
         }else{
@@ -71,7 +74,7 @@ public class DiceGame {
         }
         
         ROLLS.clear();
-        
+    
     }
     
     public static int sum(ArrayList<Integer> list){
