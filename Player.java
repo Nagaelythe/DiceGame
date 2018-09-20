@@ -22,5 +22,4 @@ public class Player {
     public void addToBank(ArrayList<Integer> roll) {
         bank.addAll(roll);
     }
-
 }

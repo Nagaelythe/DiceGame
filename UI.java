@@ -35,11 +35,57 @@ names and saves them in an ArrayList of Players.*/
         return SC.nextLine().toLowerCase().startsWith("y");
     }
 
-        public static void options() {
+    public static void options() {
         // for changing dice size, number of rolls per turn etc.
+       boolean showOptions = true;
+       ArrayList<String> options = new ArrayList<String>() {{
+           add("      OPTIONS    ");
+           add("What would you like to change?");
+           add("1. Number of rolls per turn. Currently: "+ DiceGame.RPT);
+           add("2. Number of faces. Currently: "+ DiceGame.FACES);
+           add("3. Difficulty.");
+           add("4. Goal number.");
+           add("5 Exit");
+           add("Enter a number to choose:");
+       }};
+       while(showOptions){
+        for(String n : options){
+            System.out.println(n);
+        }
+        switch(getNumber(1,5)){
+            case 1: 
+                System.out.print("How many rolls per turn would you like?"+'\n'
+                        + "enter a number: ");
+                DiceGame.RPT = getNumber(1,Integer.MAX_VALUE);
+                break;
+            case 2:
+                System.out.println("Difficulty has yet to be implemented.");
+                break;
+            case 3: 
+                System.out.println("What number would you like?" + '\n' 
+                        +" Keep in mind the dice is " +DiceGame.FACES+"-sided.");
+                break;
+            case 4: 
+                System.out.println("Max Number has yet to be implemented.");
+                break;
+            case 5:
+                System.out.println("Exiting options.");
+                showOptions = false;
+                break;          
+        }
+       }
     }
     
     public static void rules(){
+        System.out.print(
+                "                                           RULES"+'\n'
+                +"In this dice game the players take turn rolling " +DiceGame.RPT + " dice and saving the total."+'\n'
+                +"You may continue rolling the dice and add to the total until you either save it in the ‘bank’ or roll a 1."+'\n'
+                +"If you roll a 1 you lose your points for the turn."+'\n'
+                +"If you roll two or more of the same kind, their score will be doubled or tripled and so on."+'\n'
+                +"If a player has more than 100 points that player wins."+'\n'
+                +"If both players have more than 100 it is the player with the most points who wins."+'\n'
+                +"If they have the same amount of points it's a draw");
         
     }
      public static void turn(int n, Player p) {
@@ -67,6 +113,7 @@ names and saves them in an ArrayList of Players.*/
         }
         p.addToBank(ROLLS);
         ROLLS.clear();
+        tempBank.clear();
      }
     
 }

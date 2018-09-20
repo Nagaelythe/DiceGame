@@ -13,9 +13,12 @@ public class DiceGame {
     static int FACES = 6;
 
     public static void main(String[] args) {
+       Dice test = new Dice(-5);
+       System.out.println(test.roll());
+        /*
         UI.getPlayers();
         int turnNumber = 0;
-
+        UI.options();
         while (GAME) {
             turn(turnNumber, PLAYERS.get(turnNumber));
 
@@ -26,6 +29,7 @@ public class DiceGame {
             }
         }
         printPlayers(PLAYERS);
+    */
     }
 
     public static void printPlayers(ArrayList<Player> players) {
@@ -59,9 +63,5 @@ public class DiceGame {
         }
         p.addToBank(ROLLS);
         ROLLS.clear();
-    }
-
-    public static void options() {
-        // for changing dice size, number of rolls per turn etc.
     }
 }
