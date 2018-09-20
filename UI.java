@@ -88,32 +88,29 @@ public class UI {
                 +"If they have the same amount of points it's a draw");
         
     }
-     public static void turn(int n, Player p) {
-        Dice d6 = new Dice(FACES);
-        System.out.println("Player: " + n + ": " + p.name);
 
-        for (int i = 0; i < RPT; i++) {
-            ROLLS.add(d6.roll());
+ 
+    public static int valueRoll(ArrayList<Integer> I){
+        if(hasSame(I)){
+            switch (DiceGame.sum(I)){
+                case 2:
+                    return 10;
+                default :
+                    return DiceGame.sum(I)*2;
+            }
         }
-        System.out.println("You rolled:");
-        for (int r : ROLLS) {
-            System.out.println("d" + (ROLLS.indexOf(r) + 1) + ": " + r);
+        else{
+            return DiceGame.sum(I);
         }
-        if (ROLLS.contains(1)) {
-            System.out.println("You rolled a 1, bank cleared.");
-            ROLLS.clear();
-
-        } else {
-            System.out.println("Would you like to keep any? (Y/N)" + '\n');
-        }
-        if (UI.getYN()) {
-            System.out.print("Which die would you like to keep?" + '\n'
-                    + "Enter a number: ");
-            tempBank.add(ROLLS.get(UI.getNumber(1, ROLLS.size()) - 1));
-        }
-        p.addToBank(ROLLS);
-        ROLLS.clear();
-        tempBank.clear();
-     }
+    }
     
+    public static boolean hasSame(ArrayList<Integer> I){
+        int S = I.size();
+        for(int i = 0; i != S-2; i++){
+            for(int j=1; j!=S-1;j++){
+                if(I.get(i)==I.get(j)) return true;
+            }
+        }
+        return false;
+    }
 }
