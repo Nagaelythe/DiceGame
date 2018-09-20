@@ -24,7 +24,12 @@ public class UI {
     }
 
     public static int getNumber(int min, int max) {
-        int num = Integer.parseInt(SC.nextLine());
+        int num = 0;
+        try {
+        num = Integer.parseInt(SC.nextLine());
+        } catch(NumberFormatException e) {
+            System.out.println("Not a number!");
+        }
         if (num < min || num > max) {
             System.out.print("Please enter a number between: " + min + " and " + max + ": ");
             num = getNumber(min, max);
@@ -42,8 +47,7 @@ public class UI {
         }
         System.out.print("Please enter Y/N: ");
         return getYN();
-    }
-    
+    }    
 
     public static void getEnter() {
         SC.nextLine();
@@ -170,4 +174,19 @@ public class UI {
 
         }
     }
+    
+    public static void scoreScreen(){
+              
+        ArrayList<String> scoreboard = new ArrayList<String>(){
+            {
+            add(" CONGRATULATIONS" +'\n');
+            add(DiceGame.WINNER.toString());
+        }
+        };
+    for(String s : scoreboard){
+        System.out.print(s);
+    }
+    
+    }
+    
 }
