@@ -1,7 +1,5 @@
 package dicegame;
 
-import java.util.ArrayList;
-
 public class Player {
 
     private int Streak = 0;
@@ -42,6 +40,13 @@ public class Player {
 
     public int getCStreak() {
         return currentStreak;
+    }
+
+    @Override
+    public String toString() {
+        return "Player " + (DiceGame.PLAYERS.indexOf(this) + 1) + ": " + name + "!" + '\n'
+                + "You scored: " + Bank + " points. " + '\n'
+                + "Your best streak is " + Streak + '\n';
     }
 
 }

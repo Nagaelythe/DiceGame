@@ -29,8 +29,10 @@ public class DiceGame {
             gameIsDone(PLAYERS.get(turnNumber % players));
         }
         printPlayers(PLAYERS);
-        if(WINNER.isBot) DiceBot.Dance();
-
+        if (WINNER.isBot) {
+            DiceBot.Dance();
+        }
+        UI.scoreScreen();
     }
 
     public static void printPlayers(ArrayList<Player> players) {
@@ -59,7 +61,7 @@ public class DiceGame {
             p.updStreak();
 
             if (!p.isBot) {
-                
+
                 if (bot) {
                     DiceBot.Taunt();
                 }
@@ -90,10 +92,10 @@ public class DiceGame {
             } else {
                 p.addToBank(tempBank);
                 turnNumber++;
-                System.out.println(p.name+" stops his turn and is now at "+ p.getBank() +" points.");
+                System.out.println(p.name + " stops his turn and is now at " + p.getBank() + " points.");
                 tempBank = 0;
                 p.updStreak();
-                
+
             }
         }
         ROLLS.clear();
@@ -108,9 +110,8 @@ public class DiceGame {
         return sum;
     }
 
-    
-    public static void gameIsDone(Player p){
-        GAME = !(p.getBank()>=Goalpost);
+    public static void gameIsDone(Player p) {
+        GAME = !(p.getBank() >= Goalpost);
         WINNER = p;
     }
 }

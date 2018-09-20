@@ -54,14 +54,14 @@ public class DiceBot {
     }
 
     public static void Dance() {
-        for (int i =0 ; i<10; i ++){
+        for (int i = 0; i < 10; i++) {
             /*
         for (int i = 0; i < 13; i++) {
             System.out.println("");
             
         }
              */
-            
+
             System.out.println("Go DICE BOT! go DICE BOT!");
             switch (kickassmove) {
 
@@ -73,19 +73,14 @@ public class DiceBot {
                     System.out.println("_/-(ツ)-/¯");
                     kickassmove = (kickassmove + 1) % 4;
 
-
                 case 2:
                     System.out.println("¯\\_(ツ)-\\_");
                     kickassmove = (kickassmove + 1) % 4;
 
-
                 case 3:
                     System.out.println("_/-(ツ)-\\_");
                     kickassmove = (kickassmove + 1) % 4;
-
-
             }
         }
-
     }
 }
