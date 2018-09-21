@@ -19,6 +19,7 @@ public class DiceBot {
         if (currentScore >= DiceGame.Goalpost) {
             return false;
         }
+        if(DiceBot.Probable(Streak)) return true;
         if (inBank + currentScore + 10 >= DiceGame.Goalpost) {
             return true;
         }
@@ -26,6 +27,10 @@ public class DiceBot {
 
     }
 
+    public static boolean Probable(int Streak){
+        return Math.pow((5/6*5/6+0.03), Streak+1)>0.4;
+    }
+    
     public static void Taunt() {
         Random r = new Random();
         System.out.print("Bot says: ");
@@ -70,15 +75,15 @@ public class DiceBot {
                     kickassmove = (kickassmove + 1) % 4;
 
                 case 1:
-                    System.out.println("_/-(ツ)-/¯");
+                    System.out.println("_/-[ツ]-/¯");
                     kickassmove = (kickassmove + 1) % 4;
 
                 case 2:
-                    System.out.println("¯\\_(ツ)-\\_");
+                    System.out.println("¯\\_[ツ]-\\_");
                     kickassmove = (kickassmove + 1) % 4;
 
                 case 3:
-                    System.out.println("_/-(ツ)-\\_");
+                    System.out.println("_/-[ツ]-\\_");
                     kickassmove = (kickassmove + 1) % 4;
             }
         }
