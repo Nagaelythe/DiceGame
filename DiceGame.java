@@ -20,14 +20,17 @@ public class DiceGame {
     public static void main(String[] args) {
         //  UI.rules();
         UI.menu();
+       if(!GAME){
+        return;
+       }
         UI.getPlayers();
-
         int players = PLAYERS.size();
-
+       
         while (GAME) {
             turn(turnNumber % players, PLAYERS.get(turnNumber % players));
             gameIsDone(PLAYERS.get(turnNumber % players));
         }
+<<<<<<< HEAD
         printPlayers(PLAYERS);
 
         //if(WINNER.isBot) DiceBot.Dance();
@@ -35,6 +38,9 @@ public class DiceGame {
 
         
 
+=======
+
+>>>>>>> a9cc7ddc7fb50712147d9f01ef8672a7426f2f03
         if (WINNER.isBot) {
             DiceBot.Dance();
         }
@@ -105,8 +111,11 @@ public class DiceGame {
                 tempBank = 0;
                 p.updStreak();
                 p.newTurn();
+<<<<<<< HEAD
                 
 
+=======
+>>>>>>> a9cc7ddc7fb50712147d9f01ef8672a7426f2f03
             }
         }
         ROLLS.clear();
