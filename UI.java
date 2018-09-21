@@ -180,8 +180,9 @@ public class UI {
                 add(" CONGRATULATIONS" + '\n');
                 add(DiceGame.WINNER.toString());
                 add("Game lasted for " + DiceGame.turnNumber + " turns" + '\n');
-                add("A total of " +Dice.getrolls() + "was rolle."+'\n');
+                add("A total of " +Dice.getrolls() + " die was rolled."+'\n');
                 add("During the game, a total of "+ DiceGame.ONES + " ones were rolled." + '\n');
+                add("Giving you "+ ((DiceGame.ONES*100/Dice.getrolls())) + " % chance of rolling a 1."+ '\n');
             }
         };
         for (String s : scoreboard) {
