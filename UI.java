@@ -38,6 +38,7 @@ public class UI {
     }
 
     public static boolean getYN() {
+        System.out.print("Please enter Y/N: ");
         String input = SC.nextLine();
 
         if (input.toLowerCase().startsWith("y")) {
@@ -115,11 +116,14 @@ public class UI {
             switch (DiceGame.sum(I)) {
                 case 2:
                     DiceGame.ONES += 2;
+                    System.out.println("Your roll is worth " + 10 + ".");
                     return 10;
                 default:
+                    System.out.println("Your roll is worth " + (DiceGame.sum(I) * 2) + ".");
                     return DiceGame.sum(I) * 2;
             }
         } else {
+            System.out.println("Your roll is worth " + DiceGame.sum(I)+".");
             return DiceGame.sum(I);
         }
     }
@@ -175,6 +179,7 @@ public class UI {
                 add(" CONGRATULATIONS" + '\n');
                 add(DiceGame.WINNER.toString());
                 add("Game lasted for " + DiceGame.turnNumber + " turns" + '\n');
+                add("A total of " +Dice.getrolls() + "was rolle."+'\n');
                 add("During the game, a total of "+ DiceGame.ONES + " ones were rolled." + '\n');
             }
         };
@@ -183,5 +188,13 @@ public class UI {
         }
 
     }
+    
 
+    public static void dispRolls(){
+        System.out.println("You rolled:");
+        for (int i = 0; i < DiceGame.ROLLS.size(); i++) {
+            System.out.println("d" + (i + 1) + ": " + DiceGame.ROLLS.get(i));
+        }
+    }
+    
 }
