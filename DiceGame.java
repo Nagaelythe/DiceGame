@@ -31,10 +31,7 @@ public class DiceGame {
             gameIsDone(PLAYERS.get(turnNumber % players)); // Check if the game is done.
         }
 
-        //if(WINNER.isBot) DiceBot.Dance();
-        
-
-        
+   
 
         if (WINNER.isBot) {
             DiceBot.Dance();

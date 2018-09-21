@@ -91,6 +91,7 @@ public class UI {
                 case 4:
                     System.out.println("Exiting options.");
                     showOptions = false;
+                    break;
             }
         }
         menu();
